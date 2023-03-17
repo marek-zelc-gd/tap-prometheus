@@ -11,7 +11,7 @@ from singer import metadata
 
 from promalyze import Client
 
-REQUIRED_CONFIG_KEYS = ['endpoint', 'start_date', 'metrics']
+REQUIRED_CONFIG_KEYS = ['endpoint', 'start_date', 'metrics', 'user', 'password']
 STATE = {}
 
 LOGGER = singer.get_logger()
@@ -211,7 +211,7 @@ def get_bookmark(name):
 
 
 def init_prom_client():
-    return Client(Context.config['endpoint'])
+    return Client(Context.config['endpoint'],(Context.config['user'],Context.config['password']))
 
 
 @utils.handle_top_exception(LOGGER)
